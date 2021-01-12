@@ -38,28 +38,21 @@ public class RepositoriesAsyncTask extends AsyncTask<String, String, String>{
     private RecyclerView recyclerView;
     private RecyclerAdapter recyclerAdapter;
 
-    public RepositoriesAsyncTask(Context context, ListView mList) {
-        this.context = context;
-        this.mListRepositories = mList;
-    }
-
-    public RepositoriesAsyncTask(MostStarredHome mostStarredHome, RecyclerView recyclerView, RecyclerAdapter recyclerAdapter) {
+     public RepositoriesAsyncTask(MostStarredHome mostStarredHome, RecyclerView recyclerView, RecyclerAdapter recyclerAdapter) {
         this.context = mostStarredHome;
         this.recyclerView = recyclerView;
         this.recyclerAdapter = recyclerAdapter;
     }
 
-
-    //Responsavel por carregar o Objeto JSON
-    public static String getJSONFromAPI(String url) {
-        String retorno = "";
+    public static String getJsonFromGitHub(String url) {
+        String responseFromGitHub = "";
         try {
-            URL apiEnd = new URL(url);
+            URL gitHubEndPoint = new URL(url);
             int codigoResposta;
             HttpURLConnection conexao;
-            InputStream is;
+            InputStream inputStream;
 
-            conexao = (HttpURLConnection) apiEnd.openConnection();
+            conexao = (HttpURLConnection) gitHubEndPoint.openConnection();
             conexao.setRequestMethod("GET");
             conexao.setReadTimeout(15000);
             conexao.setConnectTimeout(15000);
@@ -67,13 +60,13 @@ public class RepositoriesAsyncTask extends AsyncTask<String, String, String>{
 
             codigoResposta = conexao.getResponseCode();
             if (codigoResposta < HttpURLConnection.HTTP_BAD_REQUEST) {
-                is = conexao.getInputStream();
+                inputStream = conexao.getInputStream();
             } else {
-                is = conexao.getErrorStream();
+                inputStream = conexao.getErrorStream();
             }
 
-            retorno = converterInputStreamToString(is);
-            is.close();
+            responseFromGitHub = converterInputStreamToString(inputStream);
+            inputStream.close();
             conexao.disconnect();
 
         } catch (MalformedURLException e) {
@@ -82,7 +75,7 @@ public class RepositoriesAsyncTask extends AsyncTask<String, String, String>{
             e.printStackTrace();
         }
 
-        return retorno;
+        return responseFromGitHub;
     }
 
     @NonNull
@@ -109,12 +102,10 @@ public class RepositoriesAsyncTask extends AsyncTask<String, String, String>{
         this.progessDialog = ProgressDialog.show(context, context.getString(R.string.TituloEspera), context.getString(R.string.MensagemEspera), false, false);
     }
 
-
-    //Chama o método para conectar com a API
     @Override
     protected String doInBackground(String... strings) {
         try {
-            return this.getJSONFromAPI("https://api.github.com/search/repositories?q=language:Java&sort=stars&page=1");
+            return this.getJsonFromGitHub("https://api.github.com/search/repositories?q=language:Java&sort=stars&page=1");
         } catch (Exception e) {
             return e.getMessage();
         }

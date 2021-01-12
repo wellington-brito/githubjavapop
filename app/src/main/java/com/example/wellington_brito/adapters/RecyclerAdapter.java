@@ -35,7 +35,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.repository_adapter_item_list,viewGroup, false);
-        return new ViewHolder(view, this.repositories);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -47,9 +47,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
         holder.stars.setText(repositorie.getCountStars());
         holder.userName.setText(repositorie.getUsername());
         holder.lastName.setText(repositorie.getLastName());
-
-
-        //holder.name.setText(name);
     }
 
     @Override
@@ -57,11 +54,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
         return repositories.size();
     }
 
-
-
-//    public List<Repository> getListRepoFiltered(){
-//        return filtrado ? itemsFiltered : repositories;
-//    }
 
     public interface RepositoryListener {
         void onSelected(Repository item);

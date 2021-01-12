@@ -28,16 +28,13 @@ import java.util.List;
 
 public class MostStarredHome extends AppCompatActivity implements RecyclerAdapter.RepositoryListener, Filterable {
 
-    public static final int CODIGO_ACTITIVITY = 1;
-    final static String lista = "lista";
-    ActionBarDrawerToggle toggle;
     List<Repository> repositories = new ArrayList<>();
     private List<Repository> itemsFiltered = new ArrayList<>();
     private RecyclerView recyclerView;
     private RecyclerAdapter recyclerAdapter;
-
     private SearchView searchView;
     RepositoriesAsyncTask repositoriesAsyncTask;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,16 +43,18 @@ public class MostStarredHome extends AppCompatActivity implements RecyclerAdapte
         setSupportActionBar(toolbar);
         recyclerView = findViewById(R.id.recyclerViewRepositories);
         this.loadDataApi();
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        setSearchView(menu);
+        return true;
+    }
 
+    private void setSearchView(Menu menu) {
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView = ( androidx.appcompat.widget.SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView = ( SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);
 
@@ -65,28 +64,17 @@ public class MostStarredHome extends AppCompatActivity implements RecyclerAdapte
                 getFilter().filter(query);
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String query) {
                 getFilter().filter(query);
                 return false;
             }
         });
-        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        //if (id == R.id.action_settings) {
-        //    return true;
-        //}
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -102,7 +90,6 @@ public class MostStarredHome extends AppCompatActivity implements RecyclerAdapte
 
     @Override
     public void onBackPressed() {
-        // close search view on back button pressed
         if (!searchView.isIconified()) {
             searchView.setIconified(true);
             return;
@@ -117,27 +104,27 @@ public class MostStarredHome extends AppCompatActivity implements RecyclerAdapte
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
                 String query = charSequence.toString();
-                List<Repository> filtered = new ArrayList<>();
+                List<Repository> repositoriesfiltered = new ArrayList<>();
                 if (query.isEmpty()) {
-                    filtered = repositories;
+                    repositoriesfiltered = repositories;
                 } else {
                     for (Repository repository : repositories) {
                         if (repository.getRepositoryName().toLowerCase().contains(query.toLowerCase()) || repository.getUsername().toLowerCase().contains(query.toLowerCase())) {
-                            filtered.add(repository);
+                            repositoriesfiltered.add(repository);
                         }
                     }
                 }
 
-                FilterResults results = new FilterResults();
-                results.count = filtered.size();
-                results.values = filtered;
-                return results;
+                FilterResults filterResults = new FilterResults();
+                filterResults.count = repositoriesfiltered.size();
+                filterResults.values = repositoriesfiltered;
+                return filterResults;
             }
 
             @Override
-            protected void publishResults(CharSequence charSequence, FilterResults results) {
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                 //Toast.makeText(context, charSequence, Toast.LENGTH_SHORT).show();
-                List<Repository> lista = (List<Repository>) results.values;
+                List<Repository> lista = (List<Repository>) filterResults.values;
                 for (Repository teste: lista ) {
                     Log.d("RESULTS===", teste.getRepositoryName());
                 }
@@ -153,6 +140,5 @@ public class MostStarredHome extends AppCompatActivity implements RecyclerAdapte
             recyclerAdapter.notifyDataSetChanged();
             recyclerView.setAdapter(recyclerAdapter);
         }
-
     }
 }

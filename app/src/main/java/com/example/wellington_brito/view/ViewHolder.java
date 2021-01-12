@@ -20,11 +20,9 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     public TextView lastName;
     public TextView repositoryName;
     public TextView repositoryDescription;
-    public TextView name;
-    ImageView myImageView;
-    public RecyclerAdapter.RepositoryListener listener;
+    public ImageView myImageView;
 
-    public ViewHolder(View itemView, List<Repository> itemsFiltered) {
+    public ViewHolder(View itemView) {
         super(itemView);
         this.fork = itemView.findViewById(R.id.textViewCountFork);
         this.stars = itemView.findViewById(R.id.textViewCountStar);
@@ -32,14 +30,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         this.lastName = itemView.findViewById(R.id.textViewLastName);
         this.repositoryName = itemView.findViewById(R.id.textViewRepositoryName);
         this.repositoryDescription = itemView.findViewById(R.id.textViewRepositoryDescription);
-        this.myImageView = (ImageView) itemView.findViewById(R.id.imageView);
+        this.myImageView = itemView.findViewById(R.id.imageView);
         myImageView.setImageResource(R.drawable.ic_profile);
-
-//        itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ViewHolder.this.listener.onSelected(itemsFiltered.get(getAdapterPosition()));
-//            }
-//        });
     }
 }
