@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardViewItemList"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="8dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <TextView
+            android:id="@+id/textViewRepositoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/textviewrepositoryname"
+            android:textAlignment="viewStart"
+            android:textColor="#0468B8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewRepositoryDescription"
+            android:layout_width="160dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:lines="2"
+            android:maxLength="30"
+            android:text="@string/textviewdescription"
+            android:textAlignment="textStart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRepositoryName" />
+
+        <TextView
+            android:id="@+id/textViewLastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/brito"
+            android:maxLength="15"
+            android:textAlignment="center"
+            android:textColor="#B7787878"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textViewUserName"
+            app:layout_constraintStart_toStartOf="@+id/textViewUserName"
+            app:layout_constraintTop_toBottomOf="@+id/textViewUserName"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textViewUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wellington"
+            android:textAlignment="center"
+            android:textColor="#0468B8"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <ImageView
+            android:id="@+id/imageViewStar"
+            android:layout_width="20dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewCountFork"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRepositoryDescription"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_stars" />
+
+        <ImageView
+            android:id="@+id/imageViewFork"
+            android:layout_width="22dp"
+            android:layout_height="19dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textViewRepositoryDescription"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRepositoryDescription"
+            app:layout_constraintVertical_bias="0.8"
+            app:srcCompat="@drawable/ic_stars" />
+
+        <TextView
+            android:id="@+id/textViewCountStar"
+            android:layout_width="22dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/_98"
+            android:textColor="#E5A23A"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textViewRepositoryDescription"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imageViewStar"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRepositoryDescription"
+            app:layout_constraintVertical_bias="0.75" />
+
+        <TextView
+            android:id="@+id/textViewCountFork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="107dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/_640"
+            android:textColor="#E5A23A"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textViewRepositoryDescription"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imageViewFork"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRepositoryDescription"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="59dp"
+            android:layout_height="55dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.837"
+            app:layout_constraintStart_toEndOf="@+id/textViewRepositoryName"
+            app:layout_constraintTop_toTopOf="@+id/textViewRepositoryName"
+            tools:srcCompat="@tools:sample/avatars" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
