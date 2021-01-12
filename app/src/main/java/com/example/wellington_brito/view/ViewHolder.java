@@ -26,7 +26,6 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
     public ViewHolder(View itemView, List<Repository> itemsFiltered) {
         super(itemView);
-        this.name = itemView.findViewById(R.id.tvName);
         this.fork = itemView.findViewById(R.id.textViewCountFork);
         this.stars = itemView.findViewById(R.id.textViewCountStar);
         this.userName = itemView.findViewById(R.id.textViewUserName);
