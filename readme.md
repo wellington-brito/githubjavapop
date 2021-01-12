@@ -1,6 +1,6 @@
 ## GitHub JavaPop
 
-### **O que foi implementando**
+### **O que foi implementado**
 
 > _The layout must work on any iPhone/Android in portrait mode_
 >
