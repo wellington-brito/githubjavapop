@@ -2,7 +2,7 @@
 
 ### **O que foi implementado**
 
-> _The layout must work on any iPhone/Android in portrait mode_
+> _The layout must work on Android in portrait mode_
 >
 > _JSON Mapping -> Object_
 >
